@@ -27,6 +27,7 @@ ProductData _$ProductDataFromJson(Map<String, dynamic> json) => ProductData(
       price: (json['price'] as num?)?.toDouble(),
       discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble(),
+      thumbnail: json['thumbnail'] as String?,
     );
 
 Map<String, dynamic> _$ProductDataToJson(ProductData instance) =>
@@ -37,4 +38,5 @@ Map<String, dynamic> _$ProductDataToJson(ProductData instance) =>
       'price': instance.price,
       'discountPercentage': instance.discountPercentage,
       'rating': instance.rating,
+      'thumbnail': instance.thumbnail,
     };

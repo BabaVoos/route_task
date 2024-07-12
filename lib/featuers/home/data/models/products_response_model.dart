@@ -22,6 +22,7 @@ class ProductData {
   double? price;
   double? discountPercentage;
   double? rating;
+  String? thumbnail;
 
   ProductData({
     this.id,
@@ -30,6 +31,7 @@ class ProductData {
     this.price,
     this.discountPercentage,
     this.rating,
+    this.thumbnail,
   });
 
   factory ProductData.fromJson(Map<String, dynamic> json) =>

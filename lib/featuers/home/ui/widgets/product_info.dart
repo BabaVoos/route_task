@@ -3,11 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_task/core/colors.dart';
 import 'package:route_task/core/spacing.dart';
 import 'package:route_task/core/text_styles.dart';
+import 'package:route_task/featuers/home/data/models/products_response_model.dart';
 
 class ProductInfo extends StatelessWidget {
   const ProductInfo({
     super.key,
+    required this.product,
   });
+
+  final ProductData product;
+
+  String calculateDiscountedPrice(
+    double originalPrice,
+    double discountPercentage,
+  ) {
+    double discountAmount = (discountPercentage / 100) * originalPrice;
+    double discountedPrice = originalPrice - discountAmount;
+    
+    return discountedPrice.toStringAsFixed(2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +32,15 @@ class ProductInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nike Air Jordon', style: AppTextStyles.font14Blue400),
             Text(
-              'Nike shoes flexible for wo..',
-              style: AppTextStyles.font14Blue400,
+              product.title!,
+              style: AppTextStyles.font14DarkBlue400,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              product.description!,
+              style: AppTextStyles.font14DarkBlue400,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -29,12 +48,15 @@ class ProductInfo extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'EGP 1,200 ',
-                  style: AppTextStyles.font14Blue400,
+                  'EGP ${calculateDiscountedPrice(
+                    product.price!,
+                    product.discountPercentage!,
+                  )}',
+                  style: AppTextStyles.font14DarkBlue400,
                 ),
                 horizontalSpacing(10),
                 Text(
-                  '2000 EGP',
+                  '${product.price} EGP',
                   style: AppTextStyles.font11LightBlue400LineThrough,
                 ),
               ],
@@ -44,7 +66,7 @@ class ProductInfo extends StatelessWidget {
               children: [
                 Text(
                   'Review (4.6)',
-                  style: AppTextStyles.font12Blue400,
+                  style: AppTextStyles.font12DarkBlue400,
                 ),
                 horizontalSpacing(5),
                 const Icon(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/spacing.dart';
-import 'widgets/products_grid_view.dart';
+import 'widgets/products_bloc_builder.dart';
 import 'widgets/search_field.dart';
 import 'widgets/shopping_cart.dart';
 import 'widgets/logo.dart';
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 verticalSpacing(25),
-                const ProductsGridView(),
+                const ProductsBlocBuilder(),
               ],
             ),
           ),
