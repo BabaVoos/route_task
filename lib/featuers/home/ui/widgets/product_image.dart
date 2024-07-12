@@ -1,10 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_task/core/colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductImage extends StatelessWidget {
   const ProductImage({
     super.key,
+    required this.image,
   });
+
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +23,16 @@ class ProductImage extends StatelessWidget {
               topLeft: Radius.circular(15.r),
               topRight: Radius.circular(15.r),
             ),
-            child: Image.network(
-              'https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/89b9c5f5-9049-422d-aa76-19ea5323ef58/air-jordan-1-mid-womens-shoes-XZpP4q.png',
-              fit: BoxFit.cover,
+            child: CachedNetworkImage(
+              imageUrl: image,
+              fit: BoxFit.contain,
               width: double.infinity,
+              placeholder: (context, url) {
+                return buildImagePlaceHolder();
+              },
+              imageBuilder: (context, image) {
+                return buildImage(image);
+              },
             ),
           ),
           Positioned(
@@ -35,6 +47,37 @@ class ProductImage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildImage(ImageProvider<Object> image) {
+    return Container(
+      width: 110.w,
+      height: 120.h,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(12.0),
+        image: DecorationImage(
+          image: image,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
+  Widget buildImagePlaceHolder() {
+    return Shimmer.fromColors(
+      baseColor: AppColors.lightBlueColor,
+      highlightColor: Colors.white,
+      child: Container(
+        width: 110.w,
+        height: 120.h,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.white,
+        ),
       ),
     );
   }

@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_task/core/colors.dart';
 
 class AppTextStyles {
-  static TextStyle font14Blue400 = TextStyle(
+  static TextStyle font14DarkBlue400 = TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,
-    color: AppColors.blueColor,
+    color: AppColors.darkBlue,
   );
 
   static TextStyle font11LightBlue400LineThrough = TextStyle(
@@ -16,9 +16,9 @@ class AppTextStyles {
     decoration: TextDecoration.lineThrough,
   );
 
-  static TextStyle font12Blue400 = TextStyle(
+  static TextStyle font12DarkBlue400 = TextStyle(
     fontWeight: FontWeight.w400,
-    color: AppColors.blueColor,
+    color: AppColors.darkBlue,
     fontSize: 12.sp,
   );
 }
